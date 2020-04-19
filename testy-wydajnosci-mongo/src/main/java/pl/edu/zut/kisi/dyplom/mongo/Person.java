@@ -1,6 +1,10 @@
 package pl.edu.zut.kisi.dyplom.mongo;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Person {
 	@Id
@@ -9,6 +13,8 @@ public class Person {
 	private String firstName;
 	private String lastName;
 	private int age;
+	@DBRef
+	private List<Item> items = new ArrayList<>();
 
 	public Person() {
 	}
@@ -49,6 +55,14 @@ public class Person {
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
 	}
 
 	@Override

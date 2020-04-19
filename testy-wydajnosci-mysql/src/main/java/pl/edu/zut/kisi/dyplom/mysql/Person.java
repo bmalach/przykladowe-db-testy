@@ -1,20 +1,22 @@
 package pl.edu.zut.kisi.dyplom.mysql;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
 public class Person {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public Long id;
+	private Long id;
 
 	private String firstName;
 	private String lastName;
 	private int age;
+
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Item> items = new ArrayList<Item>();
 
 	public Person() {
 	}
@@ -55,6 +57,14 @@ public class Person {
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
 	}
 
 	@Override
